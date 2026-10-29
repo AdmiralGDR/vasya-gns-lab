@@ -1,0 +1,30 @@
+{
+ "block_id": "puppy-linux",
+ "source": "after-c0fa786c-61b1-450d-8ba3-2dee6f7bbdaa.json",
+ "source_sha256": "464e918cb2e83efda29eed16f229d841b18f323bd08826d3601b44b3290883d8",
+ "template": {
+  "adapter_type": "e1000",
+  "adapters": 1,
+  "boot_priority": "dc",
+  "console_type": "vnc",
+  "cpus": 1,
+  "hda_disk_interface": "ide",
+  "kernel_command_line": "",
+  "legacy_networking": false,
+  "on_close": "power_off",
+  "options": "",
+  "platform": "x86_64",
+  "qemu_path": "qemu-system-x86_64",
+  "ram": 512
+ },
+ "proven_image_slots": {
+  "hda_disk_image": "vasya-878a29aee7fb0806-empty8G.qcow2",
+  "cdrom_image": "fossapup64-9.5.iso"
+ },
+ "proven_on": "Pop!_OS 24.04, isolated GNS3 2.2.61",
+ "changed_from": {
+  "boot_priority": "cd",
+  "hda_disk_image": "fossapup64-9.5.iso",
+  "ram": 256
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "id": "frr-router-client",
+ "title_ru": "Маршрутизатор FRRouting и клиенты",
+ "title_en": "FRRouting router with clients",
+ "description_ru": "FRR (QEMU) маршрутизирует между двумя подсетями. Клиенты Alpine в 10.1.0.0/24 и 10.2.0.0/24.",
+ "description_en": "FRR (QEMU) routes between two subnets with Alpine clients.",
+ "required_blocks": [
+  "frr",
+  "alpine-linux"
+ ],
+ "builtin": [],
+ "nodes": [
+  {
+   "name": "R1",
+   "block": "frr",
+   "x": 0,
+   "y": -100,
+   "config_cmds": [
+    "",
+    "configure terminal",
+    "interface eth0",
+    "ip address 10.1.0.1/24",
+    "no shutdown",
+    "exit",
+    "interface eth1",
+    "ip address 10.2.0.1/24",
+    "no shutdown",
+    "end",
+    "show ip route connected"
+   ]
+  },
+  {
+   "name": "C1",
+   "block": "alpine-linux",
+   "x": -200,
+   "y": 80,
+   "ip": "10.1.0.10/24",
+   "gw": "10.1.0.1"
+  },
+  {
+   "name": "C2",
+   "block": "alpine-linux",
+   "x": 200,
+   "y": 80,
+   "ip": "10.2.0.10/24",
+   "gw": "10.2.0.1"
+  }
+ ],
+ "links": [
+  [
+   "C1",
+   0,
+   0,
+   "R1",
+   0,
+   0
+  ],
+  [
+   "C2",
+   0,
+   0,
+   "R1",
+   1,
+   0
+  ]
+ ],
+ "check": {
+  "type": "ping",
+  "from": "C1",
+  "to": "10.2.0.10"
+ },
+ "expected_ru": "C1 достаёт C2 через R1 (ping 10.2.0.10)",
+ "expected_en": "C1 reaches C2 via R1",
+ "steps_ru": [
+  "Start all (FRR грузится ~60 с)",
+  "Консоль R1 (root/root): vtysh, настроить адреса",
+  "Консоль C1: ping 10.2.0.10"
+ ],
+ "removal_ru": "Демо → Удалить",
+ "boot_wait": 90
+}

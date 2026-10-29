@@ -1,0 +1,66 @@
+{
+ "measured_at": "2026-10-26T13:58:28Z",
+ "method": "docker manifest inspect -v (compressed layers, linux/amd64)",
+ "images": {
+  "adosztal/aaa:latest": {
+   "bytes": 114958805
+  },
+  "adosztal/dns:latest": {
+   "bytes": 120166366
+  },
+  "adosztal/net_toolbox:latest": {
+   "bytes": 130864909
+  },
+  "adosztal/network_automation:latest": {
+   "bytes": 231535678
+  },
+  "adosztal/python-go-perl-php:latest": {
+   "bytes": 171489308
+  },
+  "alpine": {
+   "bytes": 3853720
+  },
+  "ghcr.io/pantheontech/stonework": {
+   "bytes": 101832057
+  },
+  "gns3/chromium:latest": {
+   "bytes": 275500388
+  },
+  "gns3/ipterm:latest": {
+   "bytes": 42329939
+  },
+  "gns3/jupyter27:v2": {
+   "bytes": 366791493
+  },
+  "gns3/jupyter:v2": {
+   "bytes": 403273360
+  },
+  "gns3/kalilinux:latest": {
+   "bytes": 1106949178
+  },
+  "gns3/openvswitch:latest": {
+   "bytes": 7581507
+  },
+  "gns3/ovs-snmp:latest": {
+   "bytes": 9787073
+  },
+  "gns3/ubuntu:focal": {
+   "bytes": 44582894
+  },
+  "gns3/webterm:latest": {
+   "bytes": 268736085
+  },
+  "ntop/ntopng:latest": {
+   "bytes": 534286388
+  },
+  "onosproject/onos:latest": {
+   "bytes": 607858126
+  },
+  "troglobit/mcjoin:latest": {
+   "bytes": 2874550
+  },
+  "turnkeylinux/wordpress:latest": {
+   "bytes": 331103174
+  }
+ }
+}

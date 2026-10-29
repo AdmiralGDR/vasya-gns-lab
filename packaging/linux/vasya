@@ -1,0 +1,13 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-or-later
+# VASYA GNS LAB CLI launcher (bundle or <VASYA_ROOT>/App). Uses system python3 >= 3.10.
+HERE="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+[ -d "$HERE/App" ] && APP="$HERE/App" || APP="$HERE"
+if [ -d "$APP/../State" ]; then export VASYA_ROOT="${VASYA_ROOT:-$(dirname "$APP")}";
+else export VASYA_BUNDLE_DIR="$(dirname "$APP")"; fi
+PY="${VASYA_PYTHON:-python3}"
+"$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' 2>/dev/null || {
+  echo "VASYA GNS LAB needs python3 >= 3.10 (sudo apt install python3)" >&2; exit 3; }
+export PYTHONPATH="$APP:$APP/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONDONTWRITEBYTECODE=1
+exec "$PY" -m vasya "$@"

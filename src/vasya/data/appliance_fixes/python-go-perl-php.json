@@ -1,0 +1,1 @@
+{"note": "Tested on Pop!_OS 24.04: the GNS3 default name {name}-{0} gives \"Python, Go, Perl, PHP-1\", which gns3server rejects (409 invalid node name).", "template": {"default_name_format": "PythonGoPerlPHP-{0}"}}

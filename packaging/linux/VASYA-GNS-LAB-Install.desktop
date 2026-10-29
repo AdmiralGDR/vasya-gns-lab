@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=VASYA GNS LAB — Install
+Name[ru]=VASYA GNS LAB — Установка
+Comment=Installer for the VASYA GNS LAB network lab
+Comment[ru]=Офлайн-установщик сетевой лаборатории VASYA GNS LAB
+Exec=sh -c 'exec "$(dirname "$1")/install.sh"' sh %k
+Icon=network-workgroup
+Terminal=false
+Categories=Education;Network;

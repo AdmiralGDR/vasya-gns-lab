@@ -1,0 +1,115 @@
+VASYA GNS LAB patch for GNS3 server 2.2.61 (GPL-3.0-or-later).
+Changed by AdmiralGDR on 2026-10-26: Docker API socket from VASYA_DOCKER_SOCKET, attach fallback for podman, chown target from VASYA_DOCKER_FIX_UID/GID.
+Modification notice per GPL-3.0 section 5(a); original copyright GNS3 Technologies Inc.
+
+diff -ru a/gns3server/compute/docker/__init__.py b/gns3server/compute/docker/__init__.py
+--- a/gns3server/compute/docker/__init__.py
++++ b/gns3server/compute/docker/__init__.py
+@@ -1,6 +1,7 @@
+ # -*- coding: utf-8 -*-
+ #
+ # Copyright (C) 2015 GNS3 Technologies Inc.
++# Modified by AdmiralGDR on 2026-10-26 for VASYA GNS LAB: Docker API socket from VASYA_DOCKER_SOCKET, attach fallback for podman, chown target from VASYA_DOCKER_FIX_UID/GID.
+ #
+ # This program is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -45,6 +46,52 @@
+ CHUNK_SIZE = 1024 * 8  # 8KB
+ 
+ 
++class _VasyaHijackedAttach:
++    """VASYA patch: minimal websocket-like wrapper around a hijacked Docker/Podman attach stream (Tty containers)."""
++
++    class _Msg:
++        def __init__(self, type_, data=None):
++            self.type = type_
++            self.data = data
++
++    def __init__(self, reader, writer):
++        self._reader = reader
++        self._writer = writer
++        self.closed = False
++
++    @classmethod
++    async def open(cls, socket_path, path):
++        reader, writer = await asyncio.open_unix_connection(socket_path)
++        writer.write(("POST {} HTTP/1.1\r\nHost: docker\r\nConnection: Upgrade\r\nUpgrade: tcp\r\nContent-Length: 0\r\n\r\n".format(path)).encode())
++        await writer.drain()
++        head = await reader.readuntil(b"\r\n\r\n")
++        status = head.split(b" ", 2)[1] if b" " in head else b""
++        if status not in (b"101", b"200"):
++            writer.close()
++            raise DockerError("Docker attach failed: {}".format(head.decode(errors="replace").splitlines()[0]))
++        return cls(reader, writer)
++
++    async def send_bytes(self, data):
++        if not self.closed:
++            self._writer.write(data)
++            await self._writer.drain()
++
++    async def receive(self):
++        data = await self._reader.read(4096) if not self.closed else b""
++        if not data:
++            self.closed = True
++            return self._Msg(aiohttp.WSMsgType.CLOSE)
++        return self._Msg(aiohttp.WSMsgType.BINARY, data)
++
++    def exception(self):
++        return None
++
++    async def close(self):
++        if not self.closed:
++            self.closed = True
++            self._writer.close()
++
++
+ class Docker(BaseManager):
+ 
+     _NODE_CLASS = DockerVM
+@@ -52,7 +99,8 @@
+     def __init__(self):
+ 
+         super().__init__()
+-        self._server_url = '/var/run/docker.sock'
++        # VASYA patch: allow a per-user Docker-compatible socket (e.g. rootless podman); default unchanged
++        self._server_url = os.environ.get("VASYA_DOCKER_SOCKET") or '/var/run/docker.sock'
+         self._connected = False
+         # Allow locking during ubridge operations
+         self.ubridge_lock = asyncio.Lock()
+@@ -252,7 +300,14 @@
+         """
+ 
+         url = "http://docker/v" + self._api_version + "/" + path
+-        connection = await self._session.ws_connect(url, origin="http://docker", autoping=True)
++        try:
++            connection = await self._session.ws_connect(url, origin="http://docker", autoping=True)
++        except aiohttp.WSServerHandshakeError as e:
++            # VASYA patch: Podman's Docker-compatible API has no attach/ws endpoint (404);
++            # fall back to the hijacked HTTP attach stream, exposed with the websocket methods used by DockerVM.
++            if e.status != 404 or "/attach/ws" not in path:
++                raise
++            connection = await _VasyaHijackedAttach.open(self._server_url, "/v" + self._api_version + "/" + path.replace("/attach/ws", "/attach", 1))
+         return connection
+ 
+     @locking
+diff -ru a/gns3server/compute/docker/docker_vm.py b/gns3server/compute/docker/docker_vm.py
+--- a/gns3server/compute/docker/docker_vm.py
++++ b/gns3server/compute/docker/docker_vm.py
+@@ -1,6 +1,7 @@
+ # -*- coding: utf-8 -*-
+ #
+ # Copyright (C) 2015 GNS3 Technologies Inc.
++# Modified by AdmiralGDR on 2026-10-26 for VASYA GNS LAB: Docker API socket from VASYA_DOCKER_SOCKET, attach fallback for podman, chown target from VASYA_DOCKER_FIX_UID/GID.
+ #
+ # This program is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -644,7 +645,8 @@
+                     ")"
+                     " && /gns3/bin/busybox chmod -R u+rX \"{path}\""
+                     " && /gns3/bin/busybox chown {uid}:{gid} -R \"{path}\""
+-                    .format(uid=os.getuid(), gid=os.getgid(), path=volume),
++                    # VASYA patch: with rootless podman the host user is uid/gid 0 inside the container userns
++                    .format(uid=os.environ.get("VASYA_DOCKER_FIX_UID") or os.getuid(), gid=os.environ.get("VASYA_DOCKER_FIX_GID") or os.getgid(), path=volume),
+                 )
+             except OSError as e:
+                 raise DockerError("Could not fix permissions for {}: {}".format(volume, e))

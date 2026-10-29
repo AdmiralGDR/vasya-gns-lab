@@ -1,0 +1,75 @@
+VASYA GNS LAB
+Copyright (C) 2026 AdmiralGDR
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version. See the file LICENSE.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+-------------------------------------------------------------------------
+Third-party material in this source tree
+-------------------------------------------------------------------------
+
+1. GNS3 appliance files (src/vasya/data/appliances/*.gns3a, 183 files)
+   Taken unmodified from the GNS3 registry, https://github.com/GNS3/gns3-registry,
+   snapshot commit 0c04ba6100a2fed7f25d9bac5fc289d836db27fa (2022-03-28; every
+   file is byte-identical to that commit). Copyright (C) GNS3 Technologies Inc.
+   and contributors. Licensed under the GNU General Public License version 3.
+   packaging/payload/appliances/ holds copies of 41 of them; ntopng.gns3a there
+   is the unmodified file from registry commit
+   8ce90a6a35aaddb85bb10413a46fdf98f0993023 (2023-01-17).
+   VASYA applies its own corrections from src/vasya/data/appliance_fixes/ when
+   it creates GNS3 templates and when it builds a release; every appliance
+   file changed by a build carries the notice "Modified by AdmiralGDR on
+   2026-10-26 for VASYA GNS LAB (changed: ...)" in its description
+   (GPL-3.0 section 5(a)).
+
+2. Patches for GNS3 server 2.2.61 (src/vasya/data/patches/*.patch)
+   Modifications of GNS3 server, https://github.com/GNS3/gns3-server, tag
+   v2.2.61, Copyright (C) GNS3 Technologies Inc., GPL-3.0-or-later.
+   Changed by AdmiralGDR on 2026-10-26. Each patch adds the line
+   "# Modified by AdmiralGDR on 2026-10-26 for VASYA GNS LAB: ..." under the
+   original copyright line of every file it changes (GPL-3.0 section 5(a)),
+   and every changed hunk is marked "VASYA patch".
+
+3. Test fixtures tests/gns3server_patch/init_su/init.sh.orig and init.sh.patched
+   Copies of gns3server/compute/docker/resources/init.sh from GNS3 server
+   2.2.61, Copyright (C) 2016 GNS3 Technologies Inc., GPL-3.0-or-later.
+   init.sh.patched is the modified version (see item 2; it carries the
+   modification notice).
+
+4. tests/fixtures/templates/*.json
+   GNS3 template records exported from GNS3 2.2.61 before and after a manual
+   fix; they are data, derived from the appliance files of item 1.
+
+The source tree contains no third-party binaries and no device images.
+Helper programs, libraries, device images and Docker images are downloaded
+by the installer from their upstream locations and checked against
+src/vasya/data/third_party.lock. Release packages contain additional
+components; they are listed with their licenses in THIRD_PARTY.md and in the
+THIRD_PARTY directory of each package.
+
+-------------------------------------------------------------------------
+Trademarks and non-affiliation
+-------------------------------------------------------------------------
+
+GNS3 is a trademark of GNS3 Technologies Inc. Cisco, Cisco IOS and Packet
+Tracer are trademarks or registered trademarks of Cisco Systems, Inc.
+MikroTik, RouterOS, Fortinet, Juniper Networks and other product and company
+names mentioned in this project are trademarks of their respective owners.
+They are used only to identify the products that VASYA GNS LAB works with.
+VASYA GNS LAB is an independent project. It is not affiliated with, endorsed
+by or sponsored by GNS3 Technologies Inc., Cisco Systems, Inc. or any other
+of these companies.
+
+VASYA GNS LAB does not include, mirror or redistribute any device image.
+Freely available images are downloaded by the installer directly from the
+publisher's own site, under the publisher's terms. Vendor operating system
+images that require a license (for example Cisco IOS, IOU, ASAv, FortiGate,
+vSRX) are never downloaded from any public location: VASYA only reads them
+from a private source configured by the user, who must obtain them under the
+vendor's license terms.

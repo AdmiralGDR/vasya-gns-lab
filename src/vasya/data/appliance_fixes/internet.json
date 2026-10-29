@@ -1,0 +1,27 @@
+{
+ "block_id": "internet",
+ "source": "after-aba83b8a-f63b-4d3f-8fef-ab4419d4fe5c.json",
+ "source_sha256": "88089a7db40e66be7048351b3c1dfc63009854121991dafdd42b6cff2e8e70d9",
+ "template": {
+  "adapter_type": "e1000",
+  "adapters": 1,
+  "boot_priority": "c",
+  "console_type": "telnet",
+  "cpus": 1,
+  "hda_disk_interface": "ide",
+  "kernel_command_line": "",
+  "legacy_networking": false,
+  "on_close": "power_off",
+  "options": "-net nic,model=e1000 -net user",
+  "platform": "i386",
+  "qemu_path": "qemu-system-x86_64",
+  "ram": 64
+ },
+ "proven_image_slots": {
+  "hda_disk_image": "core-linux-6.4-internet-0.1.img"
+ },
+ "proven_on": "Pop!_OS 24.04, isolated GNS3 2.2.61",
+ "changed_from": {
+  "options": "-device e1000,netdev=internet0 -netdev vde,sock=/var/run/vde2/qemu0.ctl,id=internet0"
+ }
+}

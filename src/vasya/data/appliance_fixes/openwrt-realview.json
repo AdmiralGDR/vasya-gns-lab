@@ -1,0 +1,29 @@
+{
+ "block_id": "openwrt-realview",
+ "source": "after-60f976e2-87e9-4737-a8ce-fb6b33371b77.json",
+ "source_sha256": "04afad985ec76ce486cffd9b781a21a470ce01fe3aae7ff451ba3812a92a2dab",
+ "template": {
+  "adapter_type": "e1000",
+  "adapters": 2,
+  "boot_priority": "c",
+  "console_type": "telnet",
+  "cpus": 1,
+  "hda_disk_interface": "ide",
+  "kernel_command_line": "",
+  "legacy_networking": false,
+  "on_close": "power_off",
+  "options": "-M realview-eb-mpcore",
+  "platform": "arm",
+  "qemu_path": "qemu-system-arm",
+  "ram": 128
+ },
+ "proven_image_slots": {
+  "kernel_image": "openwrt-15.05.1-realview-vmlinux-initramfs.elf"
+ },
+ "proven_on": "Pop!_OS 24.04, isolated GNS3 2.2.61",
+ "changed_from": {
+  "hda_disk_image": "openwrt-15.05.1-realview-vmlinux-initramfs.elf",
+  "kernel_image": "",
+  "qemu_path": "qemu-system-x86_64"
+ }
+}

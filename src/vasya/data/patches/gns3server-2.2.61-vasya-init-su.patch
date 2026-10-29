@@ -1,0 +1,26 @@
+VASYA GNS LAB patch for GNS3 server 2.2.61 (GPL-3.0-or-later).
+Changed by AdmiralGDR on 2026-10-26: no busybox su when the container user is root.
+Modification notice per GPL-3.0 section 5(a); original copyright GNS3 Technologies Inc.
+
+diff -ru a/gns3server/compute/docker/resources/init.sh b/gns3server/compute/docker/resources/init.sh
+--- a/gns3server/compute/docker/resources/init.sh
++++ b/gns3server/compute/docker/resources/init.sh
+@@ -1,6 +1,7 @@
+ #!/gns3/bin/busybox sh
+ #
+ # Copyright (C) 2016 GNS3 Technologies Inc.
++# Modified by AdmiralGDR on 2026-10-26 for VASYA GNS LAB: no busybox su when the container user is root.
+ #
+ # This program is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -99,4 +100,10 @@
+     ;;
+ esac
+ eval HOME="$(echo ~${GNS3_USER-root})"
++# VASYA patch 4: for root, skip `su`. The host-copied busybox is a static glibc build;
++# its `su` aborts in images with an old glibc ("Fatal glibc error: dl-call-libc-early-init").
++# su -p as root to root only re-executes with the same uid and environment.
++if [ -z "$GNS3_USER" ] || [ "$GNS3_USER" = "root" ] || [ "$GNS3_USER" = "0" ]; then
++    exec /gns3/run-cmd.sh "$OLD_PATH" "$@"
++fi
+ exec su ${GNS3_USER-root} -p -- /gns3/run-cmd.sh "$OLD_PATH" "$@"

@@ -1,0 +1,1 @@
+{"note": "Tested on Pop!_OS 24.04: /root/stonework-gns3-startup.sh (gns3a start_command) is absent from stonework v23.06.1 (latest); an empty start_command runs the image CMD (PASS on Pop).", "template": {"start_command": ""}}

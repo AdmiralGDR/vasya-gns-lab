@@ -1,0 +1,243 @@
+{
+ "alpine:latest": {
+  "archive": "Images/docker/alpine-linux-c26612752c78.tar.zst",
+  "sha256": "94ed6077d76b0cbd616953aa90bd4be52280e41d33facee2c65a8d16803e045d",
+  "image_id": "b92841763c5c2140a20eeb2a44e94ebb0e80fd51d9d6b5895ea72fa999525d68",
+  "pinned_digest": "sha256:c26612752c78b18faacd63c7d50f4592c2e7b0f25e0e20e82bd74e465c57ab0d",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "alpine-linux": "a81fd67c-168a-4861-b5cd-5b4fb9125fc1"
+  },
+  "created": "2026-10-26T08:34:00-0800"
+ },
+ "docker.io/troglobit/mcjoin:latest": {
+  "archive": "Images/docker/mcjoin-169a20de1685.tar.zst",
+  "sha256": "ce30f9fa691e46e91cd7ac8c27711fef9c039d7c56da083499a1c153e0bc6673",
+  "image_id": "6491097b5fc0f249658d6ddeb5e5c6f64bd2f1ea5cadc3c12213c5d4aebd56c8",
+  "pinned_digest": "sha256:169a20de1685dba32018401dd01077d65c7433fb2339b4512faa07a8143a461e",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "mcjoin": "2b40a24d-f254-4f29-b964-78ce5333caf4"
+  },
+  "created": "2026-10-26T08:32:30-0800"
+ },
+ "docker.io/gns3/openvswitch:latest": {
+  "archive": "Images/docker/openvswitch-c2abc460f903.tar.zst",
+  "sha256": "b40eaea3f27107ea1364f7cd204a4392232a4e7df87c79ac41726e45221d7e56",
+  "image_id": "47019304f918b39d87e82997da50a647e7fe766e61fe625c3c2d8c2d457145a8",
+  "pinned_digest": "sha256:c2abc460f9031823312b9a34c32eb16f46fbf789853880bfafa1725355257b9a",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "openvswitch": "ce0dfafc-6e25-4e31-b5c8-b5c597941836",
+   "openvswitch-management": "de2820d7-ddb8-4ab1-866b-03380303279d"
+  },
+  "created": "2026-10-26T08:37:55-0800"
+ },
+ "docker.io/gns3/ovs-snmp:latest": {
+  "archive": "Images/docker/ovs-snmp-3c5bac1b4857.tar.zst",
+  "sha256": "01e8679be9e8d288a85b8efd3286492bb84891f40737d0e0fa5ec7c2ebce07c7",
+  "image_id": "01ad435c3316e80383f6a3f7bdcee3e5696a024cf41dda61ca2ee15b6db3fcb9",
+  "pinned_digest": "sha256:3c5bac1b485782496d751bc8e3330d9c76cf33f5f6c9dd937da017219a89e17b",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "ovs-snmp": "c2f90d56-5840-41db-83c6-b1389639f930"
+  },
+  "created": "2026-10-26T08:39:59-0800"
+ },
+ "docker.io/gns3/ipterm:latest": {
+  "archive": "Images/docker/ipterm-355646d78a41.tar.zst",
+  "sha256": "05582e6bccaab3e2f8f6444f6f93aff5429e584ddbe0cb582c59b600c1608013",
+  "image_id": "3c241f61fe1f14ecbb8944e8b2788a562aaa6111e01709f84938f9e958bde869",
+  "pinned_digest": "sha256:355646d78a4105739f72242d2a14455aaaaa61a14397d8a1c5ec7d8f725fe7b6",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "ipterm": "ba3cdfd6-f4de-4ea8-bc7d-fb9ab0c52e4b"
+  },
+  "created": "2026-10-26T08:41:57-0800"
+ },
+ "docker.io/gns3/ubuntu:focal": {
+  "archive": "Images/docker/ubuntu-docker-1c6f32e4638d.tar.zst",
+  "sha256": "56ba67d79fb45b31cdbe12e79a773f203b77aed8309d58d7345e1f32939c4108",
+  "image_id": "cf37c7335b09369f2d0b35f5231369af90e7bc74dea0b347ce12f11d259c2f92",
+  "pinned_digest": "sha256:1c6f32e4638d55fda98a4669a2cb8423c9e54d2309df5b5412c3b1f2cd968029",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "ubuntu-docker": "8e34bfb2-d643-4f2f-8e51-f969c42bd916"
+  },
+  "created": "2026-10-26T08:43:56-0800"
+ },
+ "ghcr.io/pantheontech/stonework:latest": {
+  "archive": "Images/docker/stonework-e14ca1ceb58b.tar.zst",
+  "sha256": "c0d9465a447ab005ddad31c065ce5302d991a59395fed72b016f428a274f4002",
+  "image_id": "40c3e03603b1df33429f5902f6adec50b2c19d8039c19743a06fb9cd5f18fec9",
+  "pinned_digest": "sha256:e14ca1ceb58ba0960abb21d90beb82ddfd49e4790a1e57096e9bc35620cd9fd3",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "stonework": "7cd770cc-2c95-4cd9-ae73-6581780a16ac"
+  },
+  "created": "2026-10-26T08:52:34-0800"
+ },
+ "docker.io/adosztal/aaa:latest": {
+  "archive": "Images/docker/aaa-a26da0b608e4.tar.zst",
+  "sha256": "f30b46f64ce649406c3ed219c152d5f3ff6a95d655b5551c2ed567da022bca41",
+  "image_id": "6e12e40960833fd18e71b32a4c271665709c67d27dacf9a1b1863b7b2bdd84ce",
+  "pinned_digest": "sha256:a26da0b608e49ff0e75d1ec3c470efd1010a8100385129ec06aa56c3423ba568",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "aaa": "d33dcd0b-3958-4ae2-9725-a13a9de8ddae"
+  },
+  "created": "2026-10-26T08:54:04-0800"
+ },
+ "docker.io/adosztal/dns:latest": {
+  "archive": "Images/docker/dns-b25e555b778b.tar.zst",
+  "sha256": "f1ed9e748ac140e05887634e0e5abe42605fa00603c6afd68eea71874cce6726",
+  "image_id": "37cec4f09c83c2c539cf8146df9baa6401657c81d59d474e02043d672f6a9608",
+  "pinned_digest": "sha256:b25e555b778b641631e3d146f61c83808e507f9cf35a6ec8511d8f7a6fad8e1a",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "dns": "7564fc63-9d2a-413c-9a87-1607ab794e88"
+  },
+  "created": "2026-10-26T08:55:51-0800"
+ },
+ "docker.io/adosztal/net_toolbox:latest": {
+  "archive": "Images/docker/net_toolbox-5c7999be58d5.tar.zst",
+  "sha256": "b7330f68624fb3ded1c17f563377e3221ebd0e2a75e8e76a3fce2a32598a10d7",
+  "image_id": "03f6cdd181885abf12ca0d860e3706e786790f69d986df64780407bc067f83c3",
+  "pinned_digest": "sha256:5c7999be58d568e9182440fff471fc24d1c59c8b7f66ccfa545b492681d5ffd3",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "net_toolbox": "983f85c5-db05-406f-a2e9-9f510246c3f4"
+  },
+  "created": "2026-10-26T08:58:36-0800"
+ },
+ "docker.io/adosztal/python-go-perl-php:latest": {
+  "archive": "Images/docker/python-go-perl-php-f3c920015aa2.tar.zst",
+  "sha256": "ed890b583dfa0f514579b92d53b18dc2abb1fbe88db83b87e8e6738573ca3584",
+  "image_id": "44b142b3832abb532b5e6893e7d2d1d32c8ffc585c84336201c51877b55066d4",
+  "pinned_digest": "sha256:f3c920015aa2d3f1e659108d61d2c5c70a94b49a79f218cf6538a69be3de313f",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "python-go-perl-php": "7415747a-9be4-4fa6-ab1b-6c005f839a89"
+  },
+  "created": "2026-10-26T09:01:15-0800"
+ },
+ "docker.io/adosztal/network_automation:latest": {
+  "archive": "Images/docker/network_automation-ebd79da9ff5c.tar.zst",
+  "sha256": "21358bc10b6608f867de5b75b0c0c0334703e2412fdbfc97020b9ae13f79ca9e",
+  "image_id": "dd6864157ed44c1f44aa6dfaaaa292e7618af7171c15d8ab2af3e63974466796",
+  "pinned_digest": "sha256:ebd79da9ff5ced04e0d673d1a2fdc187e2caefe1c50fa3b1fa9d1ea76a7ea951",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "network_automation": "a0efea4b-0a1b-4c9b-8a61-6d7cd5f8641a"
+  },
+  "created": "2026-10-26T09:04:17-0800"
+ },
+ "docker.io/gns3/webterm:latest": {
+  "archive": "Images/docker/webterm-d36287316a24.tar.zst",
+  "sha256": "3ea58bb5f95634ea02821cbda8621516b0abe1033ed6a3d1bb38e84fc571c4c0",
+  "image_id": "4bfd8d82003044b0ba5ef74b8990486872d72d85702c1c5420e5d1f9d35eef74",
+  "pinned_digest": "sha256:d36287316a24a4323364880702a8d384d84ef9d0b8096879b4664c3b1036a6ac",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "webterm": "b454d871-bfbb-47d3-a7cf-9f9f0455ff1a"
+  },
+  "created": "2026-10-26T09:09:24-0800"
+ },
+ "docker.io/gns3/chromium:latest": {
+  "archive": "Images/docker/chromium-4c257748ae9b.tar.zst",
+  "sha256": "ff82d8bbda5ca621657806a87519e5cfc07db3871684506d3fd2e11826bc7875",
+  "image_id": "c7e9ba1c656e3b50f9c33c398ff2fe2cd9360500d73bd2d64920814a5af1f9a6",
+  "pinned_digest": "sha256:4c257748ae9b13509a79954ec455fb1377f309bc9680f8f91897da512e1f4462",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "chromium": "ac67f539-c47a-47f5-9570-0a05c03dad8a"
+  },
+  "created": "2026-10-26T09:13:09-0800"
+ },
+ "docker.io/turnkeylinux/wordpress:latest": {
+  "archive": "Images/docker/turnkey-wordpress-76df05e501c7.tar.zst",
+  "sha256": "3704ef345feb7b4b96814131734340538d3d0dfe98f870a64a069e9472a2871a",
+  "image_id": "efa34a19b38599aaff1d6a0f80e8ea8e1308fccc644eb6e9bd972f7fb899bb86",
+  "pinned_digest": "sha256:76df05e501c774b244259f8933b5bdb7915a324b9f080f4c58d14bfc4480ea50",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "turnkey-wordpress": "93eec7e7-d9ba-4536-b264-76e77b5adf98"
+  },
+  "created": "2026-10-26T09:18:41-0800"
+ },
+ "docker.io/gns3/jupyter27:v2": {
+  "archive": "Images/docker/jupyter27-b999a7bbc511.tar.zst",
+  "sha256": "c632090a56afc614a18a3386500f4f27901b558a581ad1edf34d0a27c0820201",
+  "image_id": "b6990c72819d16b4fc9af988798e26b9a081083fc37c9436d2382ff26f3a7a62",
+  "pinned_digest": "sha256:b999a7bbc511ea7cf1e9f012abcf5366fa1d4f5b8d058d7b35c22749502ed3b8",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "jupyter27": "97d945cf-7ec3-40e9-980d-41588ca2e4eb"
+  },
+  "created": "2026-10-26T09:24:18-0800"
+ },
+ "docker.io/gns3/jupyter:v2": {
+  "archive": "Images/docker/jupyter-051f2c8d40d2.tar.zst",
+  "sha256": "a40fe401e20b7b1396c82555d433a47bcad2e8447b9251fd8271871e49122f2d",
+  "image_id": "2553fe2f7146a6663fc16cadfa79b2646bf4fe89f728420e517ef3fa95870a72",
+  "pinned_digest": "sha256:051f2c8d40d291b41cbbb3abf241eca244bfa808530adc786922a9b617e642b3",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "jupyter": "fd97e4cc-9e17-4757-94a2-bc7fa0914e2d"
+  },
+  "created": "2026-10-26T09:28:13-0800"
+ },
+ "docker.io/ntop/ntopng:latest": {
+  "archive": "Images/docker/ntopng-31b58cd94dd1.tar.zst",
+  "sha256": "21451041356db1aa85909b3bde6615d57e0f8341da71542c6c046d2ec33791d6",
+  "image_id": "9da429547b5d924cc394385c445642564eeb3995f9aa1bc7d80e001c8aaa4c1e",
+  "pinned_digest": "sha256:31b58cd94dd1a96970503ed751508ec062576c006f139c74879c65df65934e48",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "ntopng": "92a57d35-7e1f-47e1-965d-028ec3b4a912"
+  },
+  "created": "2026-10-26T09:34:51-0800"
+ },
+ "docker.io/onosproject/onos:latest": {
+  "archive": "Images/docker/onos-c3d8941030a6.tar.zst",
+  "sha256": "cddfb314975f047ced349a96bdf926e1619a4e61e27534822070d2ee1df98e68",
+  "image_id": "2a4338117eabe28fc488d1ae87162f97aef5e97de7becc9a774d0f4472f480fa",
+  "pinned_digest": "sha256:c3d8941030a6bc8a375a49270dc3179cf1f62840b5f037c2d5e09d6dfbe55937",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "onos": "69faa039-d19c-493a-9036-7c4f7939cfc6"
+  },
+  "created": "2026-10-26T09:40:22-0800"
+ },
+ "docker.io/gns3/kalilinux:latest": {
+  "archive": "Images/docker/kali-linux-cli-75f5ff57f373.tar.zst",
+  "sha256": "8ac5f9385fbb0e2c1af138bc4cf1fcfc3b89fcca89d4a7d0a262cc40220a0373",
+  "image_id": "b2295c0c4563f38b7b05a81a7c2252664fcbfc784f3ea85a4b4e0d4a02d14282",
+  "pinned_digest": "sha256:75f5ff57f373be403565bb1aceb556e66d4b0f69b6a5243ab8c09850b3845704",
+  "arch": "linux/amd64",
+  "format": "docker-archive+zstd",
+  "templates": {
+   "kali-linux-cli": "5780e8cf-a088-431a-a760-ad39cface67e"
+  },
+  "created": "2026-10-26T09:49:32-0800"
+ }
+}

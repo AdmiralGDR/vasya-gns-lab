@@ -1,0 +1,12 @@
+{"id": "two-hosts-switch", "title_ru": "Два хоста и коммутатор", "title_en": "Two hosts and a switch",
+ "description_ru": "Базовая топология: два Alpine-хоста подключены к коммутатору Ethernet. Показывает, как соединять узлы и открывать консоли.",
+ "description_en": "Basic topology: two Alpine hosts on an Ethernet switch.",
+ "required_blocks": ["alpine-linux"], "builtin": ["ethernet_switch"],
+ "nodes": [{"name": "PC1", "block": "alpine-linux", "x": -200, "y": 0, "ip": "10.0.0.1/24"},
+           {"name": "PC2", "block": "alpine-linux", "x": 200, "y": 0, "ip": "10.0.0.2/24"},
+           {"name": "SW1", "builtin": "ethernet_switch", "x": 0, "y": -120}],
+ "links": [["PC1", 0, 0, "SW1", 0, 0], ["PC2", 0, 0, "SW1", 0, 1]],
+ "check": {"type": "ping", "from": "PC1", "to": "10.0.0.2"},
+ "expected_ru": "PC1 отвечает на ping 10.0.0.2 (0% потерь)", "expected_en": "PC1 pings 10.0.0.2 with 0% loss",
+ "steps_ru": ["Открой проект vasya-demo-two-hosts-switch в GNS3", "Нажми ▶ Start all", "Открой консоль PC1", "ping -c 3 10.0.0.2"],
+ "removal_ru": "VASYA GNS LAB Manager → Демо → Удалить (проект удаляется из GNS3, образы остаются)"}

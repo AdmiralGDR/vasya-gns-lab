@@ -1,0 +1,28 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-or-later
+# VASYA GNS LAB Manager (GUI). Bundled PySide6 under App/site-packages.
+HERE="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+[ -d "$HERE/App" ] && APP="$HERE/App" || APP="$HERE"
+if [ -d "$APP/../State" ]; then export VASYA_ROOT="${VASYA_ROOT:-$(dirname "$APP")}";
+else export VASYA_BUNDLE_DIR="$(dirname "$APP")"; fi
+PY="${VASYA_PYTHON:-python3}"
+"$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' 2>/dev/null || {
+  echo "VASYA GNS LAB needs python3 >= 3.10" >&2; exit 3; }
+export PYTHONPATH="$APP:$APP/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONDONTWRITEBYTECODE=1
+# Qt >= 6.5 xcb needs libxcb-cursor0/icccm4/keysyms1. Prefer system libs; else the copies
+# VASYA placed in <root>/Runtime/lib (receipted) or, from the unpacked bundle, a per-session
+# symlink dir in $XDG_RUNTIME_DIR pointing at verified downloads of the missing libs
+# (pinned Ubuntu packages, cached in ~/.cache/vasya-gns-lab).
+_LD="/sbin/ldconfig"; [ -x "$_LD" ] || _LD="ldconfig"
+_need=""; for _l in libxcb-cursor.so.0 libxcb-icccm.so.4 libxcb-keysyms.so.1; do
+  "$_LD" -p 2>/dev/null | grep -q "$_l " || _need="$_need $_l"; done
+if [ -n "$_need" ]; then
+  if [ -n "$VASYA_ROOT" ] && [ -d "$VASYA_ROOT/Runtime/lib" ]; then _xd="$VASYA_ROOT/Runtime/lib"
+  else _xd="${XDG_RUNTIME_DIR:-/tmp}/vasya-xcb-$(id -u)"; mkdir -p "$_xd" 2>/dev/null
+    "$PY" -m vasya.runtime.gui_deps "$_xd" $_need || true; fi
+  export LD_LIBRARY_PATH="$_xd${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+fi
+# Wayland first (COSMIC/GNOME/KDE), X11 fallback
+[ -n "$WAYLAND_DISPLAY" ] && [ -z "$QT_QPA_PLATFORM" ] && export QT_QPA_PLATFORM="wayland;xcb"
+exec "$PY" -m vasya.gui "$@"

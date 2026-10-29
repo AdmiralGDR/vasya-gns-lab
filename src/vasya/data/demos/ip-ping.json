@@ -1,0 +1,11 @@
+{"id": "ip-ping", "title_ru": "IP и ping напрямую", "title_en": "Direct IP ping",
+ "description_ru": "Два хоста соединены кабелем напрямую; назначаем адреса и проверяем связность ping.",
+ "description_en": "Two hosts cabled back-to-back; assign IPs and ping.",
+ "required_blocks": ["alpine-linux"], "builtin": [],
+ "nodes": [{"name": "H1", "block": "alpine-linux", "x": -150, "y": 0, "ip": "192.168.10.1/24"},
+           {"name": "H2", "block": "alpine-linux", "x": 150, "y": 0, "ip": "192.168.10.2/24"}],
+ "links": [["H1", 0, 0, "H2", 0, 0]],
+ "check": {"type": "ping", "from": "H1", "to": "192.168.10.2"},
+ "expected_ru": "ping 192.168.10.2 успешен", "expected_en": "ping succeeds",
+ "steps_ru": ["Открой проект vasya-demo-ip-ping", "Start all", "Консоль H1: ping -c 3 192.168.10.2"],
+ "removal_ru": "Демо → Удалить"}

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+/App/
+/tmp/
+/evidence/
+*.log
+# Dynamips writes c<model>_i<id>_log.txt into the working directory
+*_i[0-9]*_log.txt

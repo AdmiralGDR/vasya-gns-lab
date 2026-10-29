@@ -1,0 +1,11 @@
+{"id": "wireshark-capture", "title_ru": "Захват трафика Wireshark", "title_en": "Wireshark capture",
+ "description_ru": "Захват ICMP между двумя хостами на линке; файл pcap открывается в Wireshark (или анализируется tshark).",
+ "description_en": "Capture ICMP on a link and open in Wireshark / tshark.",
+ "required_blocks": ["alpine-linux"], "builtin": [],
+ "nodes": [{"name": "A", "block": "alpine-linux", "x": -150, "y": 0, "ip": "172.16.0.1/24"},
+           {"name": "B", "block": "alpine-linux", "x": 150, "y": 0, "ip": "172.16.0.2/24"}],
+ "links": [["A", 0, 0, "B", 0, 0]],
+ "check": {"type": "capture", "from": "A", "to": "172.16.0.2", "link": 0},
+ "expected_ru": "В pcap видны ICMP echo request/reply", "expected_en": "pcap contains ICMP echo request/reply",
+ "steps_ru": ["Start all", "ПКМ по линку → Start capture", "Консоль A: ping 172.16.0.2", "Смотри пакеты в Wireshark"],
+ "removal_ru": "Демо → Удалить"}
